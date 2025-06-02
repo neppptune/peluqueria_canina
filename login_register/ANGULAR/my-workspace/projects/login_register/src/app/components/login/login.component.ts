@@ -17,7 +17,10 @@ export class LoginComponent {
   constructor(private log :LoginService){}
 
   login(){
-    return this.log.findUsu(this.email,this.contra);
+    return this.log.findUsu(this.email,this.contra)
+    .subscribe(data=>{
+      console.log(data);
+    });
   }
 
 }

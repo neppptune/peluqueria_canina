@@ -23,11 +23,11 @@ export class AuthService {
   }
 
   async findOne(email: string, password: string): Promise<User | Error> {
-      const usuario = await this.userRepository.findOneBy({ email, password });
-      if (usuario) {
-        return usuario;
-      }
-      return new Error('Cuenta no encontrada');
+    const usuario = await this.userRepository.findOneBy({ email, password });
+    if (usuario) {
+      return usuario;
     }
+    return new Error('Cuenta no encontrada');
+  }
 
 }
