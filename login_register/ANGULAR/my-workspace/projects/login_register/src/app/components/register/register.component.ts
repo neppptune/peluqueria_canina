@@ -1,14 +1,14 @@
 import { User } from './../../../../../../../../NEST/login_register/src/model/User';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RegisterService } from '../../service/register.service';
 import { Login } from '../../model/Login';
-
+import { RouterModule, Router } from '@angular/router';
 @Component({
   selector: 'app-register',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -22,7 +22,7 @@ export class RegisterComponent {
   mensaje:string;
   log:Login;
 
-  constructor(private register:RegisterService){}
+  constructor(private register:RegisterService,  private router: Router){}
 
   registerUser(){
     this.register.findIfCreate(this.log)
@@ -33,5 +33,8 @@ export class RegisterComponent {
         this.mensaje = "Nose pudo dar el movimiento pedido!!!";
       }
     })
+  }
+    goToLogin() {
+    this.router.navigate(['/auth/login']);
   }
 }

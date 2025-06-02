@@ -3,9 +3,13 @@
 <div>
   Introduce el email:
   <input title="email" type="text" name="email" [(ngModel)]="email" />
-  <br><br>
+  <br>
   Introduce la contraseña
   <input title="contrasena" type="password" name="contra" [(ngModel)]="contra" />
-  <br><br>
+  <br>
   <button (click)="login()">Login</button>
+  <div>
+    <p>Aún no te has registrado? </p>
+    <button (click)="goToRegister()">Registrate</button>
+  </div>
 </div>
