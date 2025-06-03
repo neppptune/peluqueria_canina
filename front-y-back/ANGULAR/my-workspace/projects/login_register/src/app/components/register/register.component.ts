@@ -12,27 +12,31 @@ import { RouterModule, Router } from '@angular/router';
 })
 export class RegisterComponent {
 
-  nombre:string;
-  dni:string;
-  email:string;
-  telefono:string;
-  contra:string;
-  mensaje:string;
-  cliente:Cliente;
+  email: string = '';
+  nombre: string = '';
+  apellido: string = '';
+  password: string = '';
+  telefono: string = '';
 
-  constructor(private register:RegisterService,  private router: Router){}
+  constructor(private registerService:RegisterService,  private router: Router){}
 
-  registerUser(){
-    this.cliente = new Cliente( this.dni, this.nombre, this.email, this.contra, this.telefono);
-    console.log(this.cliente)
-    this.register.findIfCreate(this.cliente)
-    .subscribe(data=> {
-      if(data){
-        console.log("Usuario creado correctamente", data);
-      }else{
-        console.log("Error al crear el usuario");
+  registrarCliente() {
+    this.registerService.registerCliente(
+      this.email,
+      this.nombre,
+      this.apellido,
+      this.password,
+      this.telefono
+    ).subscribe({
+      next: (response: Cliente) => {
+        // Maneja el éxito (puedes mostrar un mensaje o redirigir)
+        console.log('Cliente registrado:', response);
+      },
+      error: (error) => {
+        // Maneja el error
+        console.error('Error al registrar cliente:', error);
       }
-    })
+    });
   }
     goToLogin() {
     this.router.navigate(['/auth/login']);

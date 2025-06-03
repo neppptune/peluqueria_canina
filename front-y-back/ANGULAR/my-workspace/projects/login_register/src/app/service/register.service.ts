@@ -12,7 +12,14 @@ export class RegisterService {
   constructor(private http:HttpClient) { }
 
 
-  findIfCreate(cliente:Cliente):Observable<Cliente | any>{
-    return this.http.post(`${this.url}/create/`,cliente);
+  registerCliente(email: string, nombre: string, apellido: string, password: string, telefono: string): Observable<Cliente | any> {
+    const nuevoCliente = {
+      email,
+      nombre,
+      apellido,
+      password,
+      telefono
+    };
+    return this.http.post(`${this.url}/create/`, nuevoCliente);
   }
 }

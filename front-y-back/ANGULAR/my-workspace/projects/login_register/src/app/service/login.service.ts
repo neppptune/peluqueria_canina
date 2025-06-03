@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Login } from '../model/Cliente';
+import { Cliente } from '../model/Cliente';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
 
-  findUsu(email:string,contra:string):Observable<Login>{
-    const result = this.http.get<Login>(`${this.url}/buscar/${email},${contra}`);
+  findUsu(email:string,contra:string):Observable<Cliente>{
+    const result = this.http.get<Cliente>(`${this.url}/buscar/${email},${contra}`);
     return result;
   }
 }

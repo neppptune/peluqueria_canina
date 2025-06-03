@@ -1,24 +1,27 @@
 <h1>REGISTRO</h1>
 <br><br>
 <div>
-  Introduce el dni:
-  <input title="dni" type="text" name="dni" [(ngModel)]="dni" />
-  <br>
-  Introduce el nombre:
-  <input title="name" type="text" name="name" [(ngModel)]="nombre" />
-  <br>
-  Introduce el email:
-  <input title="email" type="text" name="email" [(ngModel)]="email" />
-  <br>
-  Introduce el contraseña:
-  <input title="contrasena" type="password" name="contrasena" [(ngModel)]="contra" />
-  <br>
-  Introduce el teléfono:
-  <input title="tel" type="text" name="tel" [(ngModel)]="telefono" />
-  <br>
-  <button (click)="registerUser()">REGISTRO</button>
-  <div>
-    <p>Aún no te has registrado? </p>
-    <button (click)="goToLogin()">Inicia sesión</button>
-  </div>
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" [(ngModel)]="nombre" placeholder="Nombre">
+</div>
+<div>
+  <label for="apellido">Apellido:</label>
+  <input type="text" id="apellido" [(ngModel)]="apellido" placeholder="Apellido">
+</div>
+<div>
+  <label for="email">Email:</label>
+  <input type="email" id="email" [(ngModel)]="email" placeholder="Email">
+</div>
+<div>
+  <label for="password">Contraseña:</label>
+  <input type="password" id="password" [(ngModel)]="password" placeholder="Contraseña">
+</div>
+<div>
+  <label for="telefono">Teléfono:</label>
+  <input type="text" id="telefono" [(ngModel)]="telefono" placeholder="Teléfono">
+</div>
+<button (click)="registrarCliente()">REGISTRO</button>
+<div>
+  <p>Aún no te has registrado? </p>
+  <button (click)="goToLogin()">Inicia sesión</button>
 </div>
