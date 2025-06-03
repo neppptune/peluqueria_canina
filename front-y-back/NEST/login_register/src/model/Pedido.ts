@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 import { Cliente } from './Cliente';
 import { PedidoProducto } from './PedidoProducto';
 
@@ -11,6 +11,7 @@ export class Pedido {
   fecha: Date;
 
   @ManyToOne(() => Cliente, cliente => cliente.pedidos)
+  @JoinColumn({ name: 'cliente_email', referencedColumnName: 'email' }) 
   cliente: Cliente;
 
   @OneToMany(() => PedidoProducto, pp => pp.pedido)

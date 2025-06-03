@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Pedido } from './Pedido';
 import { Producto } from './Producto';
 
@@ -11,11 +11,13 @@ export class PedidoProducto {
   id_producto: number;
 
   @ManyToOne(() => Pedido, pedido => pedido.pedidosProductos, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'id_pedido', referencedColumnName: 'id_pedido' })
   pedido: Pedido;
 
   @ManyToOne(() => Producto, producto => producto.pedidosProductos, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'id_producto', referencedColumnName: 'id_producto' })
   producto: Producto;
-  
+
   constructor(pedido: Pedido, producto: Producto) {
     this.pedido = pedido;
     this.producto = producto;
