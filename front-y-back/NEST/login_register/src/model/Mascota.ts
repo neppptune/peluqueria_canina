@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from 'typeorm';
 import { Cliente } from './Cliente';
 import { Cita } from './Cita';
 
@@ -16,7 +16,7 @@ export class Mascota {
   @Column()
   edad: number;
 
-  @ManyToOne(() => Cliente, cliente => cliente.mascotas)
+  @ManyToMany(() => Cliente, cliente => cliente.mascotas)
   cliente: Cliente;
 
   @OneToMany(() => Cita, cita => cita.mascota)

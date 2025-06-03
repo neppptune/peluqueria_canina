@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany, ManyToMany } from 'typeorm';
 import { Mascota } from './Mascota';
 import { Cita } from './Cita';
 import { Pedido } from './Pedido';
@@ -21,7 +21,7 @@ export class Cliente {
   @Column()
   telefono: string;
 
-  @OneToMany(() => Mascota, mascota => mascota.cliente)
+  @ManyToMany(() => Mascota, mascota => mascota.cliente)
   mascotas: Mascota[];
 
   @OneToMany(() => Cita, cita => cita.cliente)
