@@ -1,0 +1,24 @@
+<h1>REGISTRO</h1>
+<br><br>
+<div>
+  Introduce el dni:
+  <input title="dni" type="text" name="dni" [(ngModel)]="dni" />
+  <br>
+  Introduce el nombre:
+  <input title="name" type="text" name="name" [(ngModel)]="nombre" />
+  <br>
+  Introduce el email:
+  <input title="email" type="text" name="email" [(ngModel)]="email" />
+  <br>
+  Introduce el contraseña:
+  <input title="contrasena" type="password" name="contrasena" [(ngModel)]="contra" />
+  <br>
+  Introduce el teléfono:
+  <input title="tel" type="text" name="tel" [(ngModel)]="telefono" />
+  <br>
+  <button (click)="registerUser()">REGISTRO</button>
+  <div>
+    <p>Aún no te has registrado? </p>
+    <button (click)="goToLogin()">Inicia sesión</button>
+  </div>
+</div>
