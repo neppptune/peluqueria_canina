@@ -24,9 +24,6 @@ export class Cliente {
   @ManyToMany(() => Mascota, mascota => mascota.cliente)
   mascotas: Mascota[];
 
-  @OneToMany(() => Cita, cita => cita.cliente)
-  citas: Cita[];
-  
   @OneToMany(() => Pedido, pedido => pedido.cliente)
   pedidos: Pedido[];
 

@@ -30,14 +30,9 @@ export class Cita {
   @JoinColumn({ name: 'dni_empleado', referencedColumnName: 'dni' })
   empleado: Empleado;
 
-  @ManyToOne(() => Cliente, cliente => cliente.citas)
-  @JoinColumn({ name: 'email_cliente', referencedColumnName: 'email' })
-  cliente: Cliente;
-
-  constructor(mascota: Mascota, empleado: Empleado, cliente: Cliente, fecha: Date, hora: string) {
+  constructor(mascota: Mascota, empleado: Empleado, fecha: Date, hora: string) {
     this.mascota = mascota;
     this.empleado = empleado;
-    this.cliente = cliente;
     this.fecha = fecha;
     this.hora = hora;
   }
