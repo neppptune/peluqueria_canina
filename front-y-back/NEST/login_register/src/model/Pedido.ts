@@ -17,7 +17,7 @@ export class Pedido {
   @OneToMany(() => PedidoProducto, pp => pp.pedido)
   pedidosProductos: PedidoProducto[];
 
-  constructor(fecha: Date, cliente: Cliente) {
+  constructor(fecha?: Date, cliente?: Cliente) {
     this.fecha = fecha;
     this.cliente = cliente;
   }

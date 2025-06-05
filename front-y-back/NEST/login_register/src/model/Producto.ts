@@ -21,7 +21,7 @@ export class Producto {
   @OneToMany(() => PedidoProducto, pp => pp.producto)
   pedidosProductos: PedidoProducto[];
 
-  constructor(nombre: string, descripcion: string, precio: number, stock: number) {
+  constructor(nombre?: string, descripcion?: string, precio?: number, stock?: number) {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.precio = precio;

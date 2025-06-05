@@ -16,16 +16,22 @@ export class Mascota {
   @Column()
   edad: number;
 
+  @Column()
+  email_cliente: string;
+
   @ManyToMany(() => Cliente, cliente => cliente.mascotas)
   cliente: Cliente;
 
   @OneToMany(() => Cita, cita => cita.mascota)
   citas: Cita[];
 
-  constructor(nombre: string, raza: string, edad: number, cliente: Cliente) {
+  constructor(nombre?: string, raza?: string, edad?: number, cliente?: Cliente) {
     this.nombre = nombre;
     this.raza = raza;
     this.edad = edad;
     this.cliente = cliente;
+    if(cliente){
+      this.email_cliente = cliente.email
+    }
   }
 }

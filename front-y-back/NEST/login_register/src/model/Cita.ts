@@ -1,6 +1,5 @@
-import { Entity, PrimaryColumn, Column, OneToMany, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 import { Mascota } from './Mascota';
-import { Cliente } from './Cliente';
 import { Empleado } from './Empleado';
 @Entity('citas')
 export class Cita {
@@ -30,9 +29,16 @@ export class Cita {
   @JoinColumn({ name: 'dni_empleado', referencedColumnName: 'dni' })
   empleado: Empleado;
 
-  constructor(mascota: Mascota, empleado: Empleado, fecha: Date, hora: string) {
+  constructor(mascota?: Mascota, empleado?: Empleado, fecha?: Date, hora?: string) {
     this.mascota = mascota;
+    if(mascota){
+      this.id_mascota = mascota.id_mascota;
+      this.email_cliente = mascota.cliente.email;
+    }
     this.empleado = empleado;
+    if(empleado){
+      this.dni_empleado = empleado.dni;
+    }
     this.fecha = fecha;
     this.hora = hora;
   }
