@@ -14,14 +14,13 @@ export class Cliente {
   @Column()
   apellido: string;
   
-
   @Column()
   password: string;
 
   @Column()
   telefono: string;
 
-  @ManyToMany(() => Mascota, mascota => mascota.cliente)
+  @OneToMany(() => Mascota, mascota => mascota.cliente)
   mascotas: Mascota[];
 
   @OneToMany(() => Pedido, pedido => pedido.cliente)

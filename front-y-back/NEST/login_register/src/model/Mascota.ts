@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, ManyToOne } from 'typeorm';
 import { Cliente } from './Cliente';
 import { Cita } from './Cita';
 
@@ -19,11 +19,10 @@ export class Mascota {
   @Column()
   email_cliente: string;
 
-  @ManyToMany(() => Cliente, cliente => cliente.mascotas)
+  @ManyToOne(() => Cliente, cliente => cliente.mascotas)
   cliente: Cliente;
 
-  @OneToMany(() => Cita, cita => cita.mascota)
-  citas: Cita[];
+
 
   constructor(nombre?: string, raza?: string, edad?: number, cliente?: Cliente) {
     this.nombre = nombre;
