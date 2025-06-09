@@ -30,6 +30,7 @@ export class Cita {
   @JoinColumn({ name: 'dni_empleado', referencedColumnName: 'dni' })
   empleado: Empleado;
 
+
   constructor(cliente?: Cliente, empleado?: Empleado, fecha?: Date, hora?: string) {
     this.cliente = cliente;
     if(cliente){
