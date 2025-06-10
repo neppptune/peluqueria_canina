@@ -1,8 +1,6 @@
 import { IsDate, IsEmail, IsInt, Length } from "class-validator";
 
-export class PedidoDTO {
-  @IsInt()
-  id_pedido?: number;
+export class PedidoAltaDto {
   @IsDate()
   fecha: Date;
   @IsEmail()
@@ -12,6 +10,5 @@ export class PedidoDTO {
   constructor(fecha: Date, clienteEmail: string, id_pedido?: number) {
     this.fecha = fecha;
     this.clienteEmail = clienteEmail;
-    this.id_pedido = id_pedido;
   }
 }

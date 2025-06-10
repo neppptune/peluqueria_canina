@@ -1,6 +1,6 @@
 import { IsInt } from "class-validator";
 
-export class PedidoProductoDTO {
+export class PedidoProductoAltaDto {
   @IsInt()
   id_pedido: number;
   @IsInt()

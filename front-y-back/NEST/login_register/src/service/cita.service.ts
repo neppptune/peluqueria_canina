@@ -3,7 +3,6 @@ import { Cita } from './../model/Cita';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CitaDto } from 'src/dto/CitaDto';
-import { Producto } from 'src/model/Producto';
 import { Repository } from 'typeorm';
 
 
@@ -20,9 +19,9 @@ export class CitaService {
   }
 
   // Devover las citas de un cliente
-  async findQuotesByClient(cita:CitaDto):Promise<CitaDto[]>{
+  async findQuotesByClient(email: string):Promise<CitaDto[]>{
     const result = await this.repositoryCita.createQueryBuilder("cita")
-    .where("email_cliente:=email",{email:cita.email_cliente})
+    .where("email_cliente:=email",{email})
     .getMany();
 
     if(result){

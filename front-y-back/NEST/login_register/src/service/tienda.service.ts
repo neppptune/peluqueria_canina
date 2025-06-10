@@ -1,30 +1,31 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ProductoAltaDto } from 'src/dto/ProductoAltaDto';
+import { ProductoDatosDto } from 'src/dto/ProductoDatosDto';
+import { Producto } from 'src/model/Producto';
 import { Repository } from 'typeorm';
-import { Tienda } from './model/tienda.entity';
-import { CrearArticuloDto } from './dto/crear-articulo.dto';
 
 @Injectable()
 export class TiendaService {
   constructor(
-    @InjectRepository(Tienda)
-    private readonly tiendaRepo: Repository<Tienda>,
+    @InjectRepository(Producto)
+    private readonly productoRepo: Repository<Producto>,
   ) {}
 
   // Mostrar
-  async obtenerTodos(): Promise<Tienda[]> {
-    return await this.tiendaRepo.find();
+  async obtenerTodos(): Promise<Producto[]> {
+    return await this.productoRepo.find();
   }
 
   // Añadir
-  async crearArticulo(dto: CrearArticuloDto): Promise<Tienda> {
-    const nuevoArticulo = this.tiendaRepo.create(dto);
-    return await this.tiendaRepo.save(nuevoArticulo);
+  async crearArticulo(dto: ProductoAltaDto): Promise<ProductoDatosDto> {
+    return await this.productoRepo.save(dto);
   }
+
 
   //Eliminar
   async eliminarArticulo(id: number): Promise<void> {
-    const resultado = await this.tiendaRepo.delete(id);
+    const resultado = await this.productoRepo.delete(id);
     if (resultado.affected === 0) {
       throw new NotFoundException("Artículo no encontrado");
     }
