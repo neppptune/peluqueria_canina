@@ -10,7 +10,7 @@ import {
   Post,
 } from '@nestjs/common';
 //IMPORTANTE IMPORTAR RESPONSE
-import { Response } from 'express';
+import {Response} from 'express';
 import { AuthService } from '../service/auth.service';
 import { Cliente } from 'src/model/Cliente';
 
