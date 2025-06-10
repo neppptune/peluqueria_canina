@@ -1,18 +1,18 @@
 import { IsDate, IsInt, IsString, Length } from 'class-validator';
 export class CitaDto {
   id_cita: number;
+  email_cliente: string;
+  dni_empleado: string;
+  id_mascota: number;
   fecha: Date;
   hora: string;
-  id_mascota: number;
-  dni_empleado: string;
-  email_cliente: string;
 
-  constructor(fecha?: Date, hora?: string, mascotaId?: number, empleadoDni?: string, clienteEmail?: string, id_cita?: number) {
+  constructor(id_cita?: number, clienteEmail?: string,empleadoDni?: string, mascotaId?: number,fecha?: Date, hora?: string) {
+    this.id_cita = id_cita;
+    this.email_cliente = clienteEmail;
+    this.dni_empleado = empleadoDni;
+    this.id_mascota = mascotaId;
     this.fecha = fecha;
     this.hora = hora;
-    this.id_mascota = mascotaId;
-    this.dni_empleado = empleadoDni;
-    this.email_cliente = clienteEmail;
-    this.id_cita = id_cita;
   }
 }

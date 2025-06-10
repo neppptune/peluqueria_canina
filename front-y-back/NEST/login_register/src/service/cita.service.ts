@@ -1,3 +1,4 @@
+import { CitaAltaDto } from './../dto/CitaAltaDto';
 import { Cita } from './../model/Cita';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -21,7 +22,7 @@ export class CitaService {
   // Devover las citas de un cliente
   async findQuotesByClient(cita:CitaDto):Promise<CitaDto[]>{
     const result = await this.repositoryCita.createQueryBuilder("cita")
-    .where("dni_usuario:=dni",{dni:cita.dni_empleado})
+    .where("email_cliente:=email",{email:cita.email_cliente})
     .getMany();
 
     if(result){
@@ -30,9 +31,9 @@ export class CitaService {
   }
 
   // Alta de una cita
-  async highQuote(cita:CitaDto):Promise<boolean>{
+  async highQuote(cita:CitaAltaDto):Promise<boolean>{
     const high :Cita = await this.repositoryCita.createQueryBuilder("citas")
-    .where("id_cita=:cod",{cod:cita.id_cita})
+    .where("fecha=:fecha AND hora=:hora", { fecha: cita.fecha, hora: cita.hora })
     .getOne();
     
     if(high){
@@ -42,4 +43,32 @@ export class CitaService {
       return true;
     }
   }
+
+  // Modificar Cita
+
+  async modifyQuote(cita:CitaAltaDto):Promise<boolean>{
+    const result = await this.repositoryCita.createQueryBuilder()
+      .update(Cita)
+      .set({ ...cita })
+      .where("fecha = :fecha AND hora = :hora", { fecha: cita.fecha, hora: cita.hora })
+      .execute();
+
+    return result.affected && result.affected > 0;
+  }
+
+  // Eliminar Cita
+
+  async deleteQuote(cita:CitaAltaDto):Promise<boolean>{
+    const delet :Cita = await this.repositoryCita.createQueryBuilder("citas")
+    .where("fecha=:fecha AND hora=:hora", { fecha: cita.fecha, hora: cita.hora })
+    .getOne();
+    
+    if(delet){
+      this.repositoryCita.delete(delet);
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 }

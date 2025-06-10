@@ -8,19 +8,20 @@ export class Cita {
   id_cita: number;
 
   @Column()
-  fecha: Date;
-
-  @Column()
-  hora: string;
-
-  @Column()
-  id_mascota: number;
+  email_cliente: string;
 
   @Column()
   dni_empleado: string;
 
   @Column()
-  email_cliente: string;
+  id_mascota: number;
+
+  @Column()
+  fecha: Date;
+
+  @Column()
+  hora: string;
+  
 
   @ManyToOne(()=>Cliente, cliente => cliente.email)
   @JoinColumn({name: 'email_cliente', referencedColumnName: 'email' })
